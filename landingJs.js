@@ -1,28 +1,55 @@
 const card = document.querySelector('#card');
 const container = document.querySelector('#container');
-const ripple = document.querySelector('#ripple');
+const recod = document.querySelector('#recod');
 
 container.addEventListener('mousemove', (e)=>{
-    let x= (window.innerWidth/2- e.pageX)/10;
-    let y= (window.innerHeight/2- e.pageY)/10;
-    ripple.style.transform = `rotateY(${-x}deg) rotateX(${-y}deg)`
-    ripple.style.transform = 'translateZ(70px)';
+    let x= (window.innerWidth/2- e.pageX)/20;
+    let y= (window.innerHeight/2- e.pageY)/20;
+    recod.style.transform = `rotateY(${-x}deg) rotateX(${-y}deg)`
+    recod.style.transform = 'translateZ(70px)';
     card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`
 });
 
-ripple.addEventListener('click', (e)=>{
-    console.log(window.innerWidth)
-    
-});
-ripple.addEventListener('mouseover',e=>{
-    card.style.transform = `rotateX(0deg) rotateY(0deg)`
-    ripple.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`
+recod.addEventListener('click', (e)=>{
+    navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => {
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+        const chunks = [];
+        mediaRecorder.addEventListener("dataavailable", event => {
+            chunks.push(event.data);
+        });
 
-})
+        mediaRecorder.addEventListener("stop", () => {
+            const audioToBlob = new Blob(chunks);
+            const url = URL.createObjectURL(audioToBlob);
+            const audio = new Audio(url);
+            recod.style.backgroundImage = 'linear-gradient(45deg, #c46a5a, transparent)'
+            //download the file
+            const anchor = document.createElement('a');
+            anchor.style.display = 'none';
+            anchor.href = url;
+            anchor.download = 'test.wav';
+            document.body.appendChild(a);
+            anchor.click();
+            /*-------------*/
+            setTimeout(() => {
+                audio.play();
+              }, 1000);
+          });
+
+        setTimeout(() => {
+            mediaRecorder.stop();
+          }, 8000);
+    });
+});
 
 container.addEventListener('mouseleave', (e)=>{
     card.style.transform = `rotateX(0deg) rotateY(0deg)`
-    ripple.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`
-    ripple.style.transform = 'translateZ(0px)';
+    recod.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`
+    recod.style.transform = 'translateZ(0px)';
 });
+
+
+
 

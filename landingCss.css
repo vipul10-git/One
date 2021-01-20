@@ -9,6 +9,18 @@ body{
     align-items: center;
     perspective: 1000px;
     min-height: 100vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#title{
+    font-size: 1.4rem;
+    position: fixed;
+    top: 1.2rem;
+    left: 1.2rem;
+    background-image:linear-gradient(45deg, #ff5151, transparent);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 #container{
     height: 75vh;
@@ -20,19 +32,33 @@ body{
 
 #card{
     transform-style: preserve-3d;
-    border-radius: 15px;
-    box-shadow: 0px 0px 45px 0px #888888;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 3rem 0px #888888;
     width:20vw;
+    padding: 10rem;
+    height: 70vh;
+}
+#cardBottom{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    padding: 10rem;
+    height: 100%;
 }
 
 #ripple{
-    min-width: 75px;
-    min-height: 75px;
+    min-width: 5rem;
+    min-height: 5rem;
     border-radius: 50%;
-    background-image:linear-gradient(45deg, #6ca8e8, transparent);
+    background-image:linear-gradient(45deg, #ff5151, transparent);
+}
+#recod{
+    position: absolute;
+    width: 3rem;
+}
+#info{
+    font-size: .8rem;
+    color:rgba(83, 119, 240, 0.911);
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
