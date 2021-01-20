@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    min-height: 100vh;
+}
+#container{
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    margin: auto;
+}
+
+#card{
+    transform-style: preserve-3d;
+    transition: all .75 ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 45px 0px #888888;
+    width:20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    padding: 10rem;
+    perspective: 1000px;
+}
+
+#ripple{
+    background-color: red;
+    transition: all .75 ease-out;
+    min-width: 75px;
+    min-height: 75px;
+    border-radius: 50%;
+    border: none;
+}
