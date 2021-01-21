@@ -46,11 +46,19 @@ body{
 }
 
 #ripple{
-    min-width: 5rem;
-    min-height: 5rem;
+    min-width: 6rem;
+    min-height: 6rem;
     border-radius: 50%;
     background-image:linear-gradient(45deg, #ff5151, transparent);
+    
 }
+.listen{
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 #recod{
     position: absolute;
     width: 3rem;
