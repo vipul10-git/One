@@ -11,6 +11,15 @@ container.addEventListener('mousemove', (e)=>{
 });
 
 recod.addEventListener('click', (e)=>{
+    var countDown = 8;
+    let x = setInterval(function() {
+        --countDown;
+        document.getElementById('info').innerHTML = '*'+countDown+' second left of recording';
+        if (countDown < 1) {
+            clearInterval(x);
+            document.getElementById('info').innerHTML = '';
+        }
+    }, 1000);
     navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
         const mediaRecorder = new MediaRecorder(stream);
@@ -24,13 +33,12 @@ recod.addEventListener('click', (e)=>{
             const audioToBlob = new Blob(chunks);
             const url = URL.createObjectURL(audioToBlob);
             const audio = new Audio(url);
-            recod.style.backgroundImage = 'linear-gradient(45deg, #c46a5a, transparent)'
             //download the file
             const anchor = document.createElement('a');
             anchor.style.display = 'none';
             anchor.href = url;
             anchor.download = 'test.wav';
-            document.body.appendChild(a);
+            document.body.appendChild(anchor);
             anchor.click();
             /*-------------*/
             setTimeout(() => {
